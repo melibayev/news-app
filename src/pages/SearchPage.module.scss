@@ -1,0 +1,26 @@
+#news {
+    padding-top: 200px;
+}
+
+.news_title {
+    font-size: 31px;
+    margin-bottom: 32px;
+}
+
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 12px;
+    column-gap: 8px;
+    margin-top: 56px;
+    button {
+        padding: 8px 14px;
+        border-radius: 4px;
+    }
+    .active {
+        background-color: #109BE9;
+        color: #FFFFFF;
+    }
+    
+}

@@ -1,0 +1,43 @@
+.card {
+    &__img {
+        position: relative;
+        margin-bottom: 16px;
+        img {
+            width: 283px;
+            height: 160px;
+            object-fit: cover;
+        }
+        p {
+            position: absolute;
+            bottom: 0;
+            padding: 8px 12px;
+            font-size: 12px;
+            background-color: #fff;
+        }
+        @media (max-width: 1360px) {
+            img {
+                width: 100%;
+                height: 200px;
+            }
+        }
+        @media (max-width: 500px) {
+            img {
+                height: 150px;
+            }
+        }
+    }
+    &__description {
+        h4 {
+            margin-bottom: 16px;
+        }
+        p {
+            font-size: 12px;
+            color: #9A9AB0;
+        }
+        @media (max-width: 500px) {
+            h4 {
+                font-size: 12px;
+            }
+        }
+    }
+}

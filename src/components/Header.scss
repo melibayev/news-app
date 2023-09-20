@@ -1,0 +1,128 @@
+header {
+    background-color: #909090;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #909090;
+    z-index: 10000;
+}
+
+.navbar-top {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    .container {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+    }
+    border-bottom: 1px solid #FFFFFF;
+}
+
+.navbar-categories, .navbar-social-media,
+.navbar-page-links, .navbar-features {
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
+}
+
+.navbar-social-media, .navbar-features {
+    justify-content: flex-end;
+}
+
+.navbar-category-links, .navbar-social-media-links,
+.navbar-page-link {
+    font-size: 14px;
+    color: #FFFFFF;
+    transition: .5s;
+    &:hover {
+        color: #F36326;
+    }
+}
+
+.navbar-social-media-links {
+    text-transform: uppercase;
+}
+
+.navbar-bottom {
+    .container {
+        display: grid;
+        grid-template-columns: 3fr 1fr;
+    }
+    border-bottom: 1px solid #FFFFFF;
+}
+
+.navbar-search {
+    svg {
+        font-size: 20px;
+        fill: #FFFFFF;
+        transition: .5s;
+        &:hover {
+            fill: #F36326;
+        }
+    }
+}
+
+.navbar-button {
+    button {
+        padding: 10px 20px;
+        color: #FFFFFF;
+        background-color: #F36326;
+        border-radius: 8px;
+    }
+}
+
+.navbar-search-dropdown {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #909090;
+    z-index: 9999;
+    padding: 20px 0;
+    transition: .5s;
+    border-bottom: 1px solid #FFFFFF;
+    .container {
+        display: flex;
+        column-gap: 20px;
+    }
+    input {
+        width: 100%;
+        padding: 14px;
+        border-radius: 8px;
+        font-size: 16px;
+        @media (max-width: 400px) {
+            font-size: 16px;
+            &::placeholder {
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+.dropdown-button {
+    padding: 10px 14px;
+    border-radius: 8px;
+    background-color: #F36326;
+    svg {
+        font-size: 20px;
+        fill: #FFFFFF;
+    }
+}
+
+.dropdown-open {
+    top: 128px;
+}
+
+@media (max-width: 840px) {
+    .navbar-page-link:not(.navbar-logo) {
+        display: none;
+    }
+}
+
+@media (max-width: 500px) {
+    .navbar-social-media-links {
+        display: none;
+    }
+}
