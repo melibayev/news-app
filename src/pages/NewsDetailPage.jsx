@@ -18,10 +18,13 @@ const NewsDetailPage = () => {
     fetch(req)
         .then((response) => response.json())
         .then((result) => {
-          const latestNews = result.articles.slice(result.articles.length - 14, -6);
-          setData(result.articles)
-          setLatestNews(latestNews);
-
+          if (result.articles && result.articles.length > 0) {
+            const latestNews = result.articles.slice(result.articles.length - 14, -6);
+            setData(result.articles)
+            setLatestNews(latestNews);
+          } else {
+            console.log("No articles found in the response.");
+          }
         })
         .catch((error) => {
           console.log(error);

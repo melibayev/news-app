@@ -26,26 +26,32 @@ const HomePage = () => {
   const { updateApiDataArrived } = useApiData();
   const { apiDataArrived } = useApiData();
 
-    useEffect(() => {
-      fetch(req)
-          .then((response) => response.json())
-          .then((result) => {
-            const popularNews = result.articles.slice(13, 18);
-            const homeNews = result.articles.slice(9, 11);
-            const latestNews = result.articles.slice(result.articles.length - 14, -6);
-            const recommendedNews = result.articles.slice(16, 26);
-            // setData(result)
-            setPopularNews(popularNews)
-            setHomeNews(homeNews);
-            setLatestNews(latestNews);
-            setRecommendedNews(recommendedNews)
-            updateApiDataArrived(true)
-          })
-          .catch((error) => {
-            console.log(error);
-          })
-          
-    }, []);
+  useEffect(() => {
+    fetch(req)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.articles && result.articles.length > 0) {
+          const popularNews = result.articles.slice(13, 18);
+          const homeNews = result.articles.slice(9, 11);
+          const latestNews = result.articles.slice(
+            result.articles.length - 14,
+            -6
+          );
+          const recommendedNews = result.articles.slice(16, 26);
+          setPopularNews(popularNews);
+          setHomeNews(homeNews);
+          setLatestNews(latestNews);
+          setRecommendedNews(recommendedNews);
+          updateApiDataArrived(true);
+        } else {
+          console.log("No articles found in the response.");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+  
 
     const responsive = {
       desktop: {
