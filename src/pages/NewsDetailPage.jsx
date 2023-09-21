@@ -3,11 +3,12 @@ import { NavLink, useParams } from 'react-router-dom'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import LatestNews from '../components/latestNews/LatestNews'
+import Loader from '../components/shared/Loader'
 
 import styles from './NewsDetailPage.module.scss'
 
 const NewsDetailPage = () => {
-  const url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=95fe2b66ff6b4e32a03344e5a3acd39d'
+  const url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=43021f4e5ff342d1a21062038a9adbe5'
   const req = new Request(url);
   const pageUrl = useParams();
   const [data, setData] = useState([])
@@ -37,7 +38,7 @@ const NewsDetailPage = () => {
 
   console.log(newsDetail);
   if (!newsDetail) {
-    return <div>Loading...</div>; // You can replace this with a loading indicator or message
+    return <Loader />; // You can replace this with a loading indicator or message
   }
   const {author, content, description, title, urlToImage} = newsDetail
   

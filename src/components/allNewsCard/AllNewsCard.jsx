@@ -3,8 +3,8 @@ import { NavLink } from 'react-router-dom';
 import styles from './AllNewsCard.module.scss';
 
 const AllNewsCard = ({urlToImage, url, description, author, title, source}) => {
-  const httpsPattern = /^https:\/\//;
-  const isLink = httpsPattern.test(author);
+  // const httpsPattern = /^https:\/\//;
+  // const isLink = httpsPattern.test(author);
   return (
     <NavLink to={`${author !== '' ? `/news-detail/${author}` : url}`}>
         <div className={styles.card}>

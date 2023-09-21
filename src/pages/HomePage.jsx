@@ -15,12 +15,12 @@ import Loader from '../components/shared/Loader';
 import styles from './HomePage.module.scss';
 
 const HomePage = () => {
-  const [data, setData] = useState([])
+  // const [data, setData] = useState([])
   const [popularNewsObject, setPopularNews] = useState([])
   const [homeNewsObject, setHomeNews] = useState([])
   const [latestNewsObject, setLatestNews] = useState([])
   const [recommendedNewsObject, setRecommendedNews] = useState([])
-  const url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=95fe2b66ff6b4e32a03344e5a3acd39d'
+  const url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=43021f4e5ff342d1a21062038a9adbe5'
   const req = new Request(url);
   
   const { updateApiDataArrived } = useApiData();
@@ -33,8 +33,8 @@ const HomePage = () => {
             const popularNews = result.articles.slice(13, 18);
             const homeNews = result.articles.slice(9, 11);
             const latestNews = result.articles.slice(result.articles.length - 14, -6);
-            const recommendedNews = result.articles.slice(26, 36);
-            setData(result)
+            const recommendedNews = result.articles.slice(16, 26);
+            // setData(result)
             setPopularNews(popularNews)
             setHomeNews(homeNews);
             setLatestNews(latestNews);

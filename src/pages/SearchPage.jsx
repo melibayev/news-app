@@ -11,7 +11,7 @@ const SearchPage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const { keyword } = useKeyword();
-    const API_KEY = '95fe2b66ff6b4e32a03344e5a3acd39d';
+    const API_KEY = '43021f4e5ff342d1a21062038a9adbe5';
     const PAGE_SIZE = 3;
 
     useEffect(() => {
