@@ -3,6 +3,7 @@ import AllNewsCard from '../components/allNewsCard/AllNewsCard'
 import { useKeyword } from '../components/context/KeywordContext'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
+import Loader from '../components/shared/Loader'
 
 import styles from './SearchPage.module.scss'
 
@@ -40,12 +41,13 @@ const SearchPage = () => {
         setCurrentPage(newPage);
     };
     
-    console.log(articles);
+    if (articles.length < 0) {
+      return <Loader />
+    }
 
     return (
     <Fragment>
         <Header />
-
         <section id={styles.news}>
             <div className="container">
                 <h1 className={styles.news_title}>News</h1>

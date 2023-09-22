@@ -41,7 +41,7 @@ const NewsDetailPage = () => {
 
   console.log(newsDetail);
   if (!newsDetail) {
-    return <Loader />; // You can replace this with a loading indicator or message
+    return <Loader />; 
   }
   const {author, content, description, title, urlToImage} = newsDetail
   
