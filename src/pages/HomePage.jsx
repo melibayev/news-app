@@ -50,17 +50,8 @@ const HomePage = () => {
       .catch((error) => {
         console.log(error);
       });
+      window.scrollTo(0, 0);
   }, []);
-  // useEffect(() => {
-  //   fetch(req)
-  //     .then((response) => response.json())
-  //     .then((result) => {
-  //       console.log(result);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }, []);
   
 
     const responsive = {

@@ -46,6 +46,7 @@ const SearchPage = () => {
       }
   
       fetchNews();
+      window.scrollTo(0, 0);
     }, [currentPage, keyword]);
 
     const handlePageChange = (newPage) => {

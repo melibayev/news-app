@@ -34,6 +34,7 @@ const NewsDetailPage = () => {
     if (filteredNews.length > 0) {
       setNewsDetail(filteredNews[0]);
     }
+    window.scrollTo(0, 0);
   }, [data, pageUrl.id]);
 
   console.log(newsDetail);
