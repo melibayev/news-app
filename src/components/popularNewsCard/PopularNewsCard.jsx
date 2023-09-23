@@ -2,25 +2,23 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 import styles from './PopularNewsCard.module.scss';
 
-const Popular_news_card = ({urlToImage, publishedAt, title, author}) => {
-    const currentTime = new Date();
-    const time = publishedAt.split('T')[1].slice(0, -1);
-    const timeDate = new Date();
-    const timeParts = time.split(":");
-    timeDate.setHours(timeParts[0]);
-    timeDate.setMinutes(timeParts[1]);
-    timeDate.setSeconds(timeParts[2]);
-    const timeDifferenceMs = timeDate - currentTime;
-    let timeDifferenceHours = Math.round(Math.abs(timeDifferenceMs / (1000 * 60 * 60)));
-    if(timeDifferenceHours <= '1') timeDifferenceHours = '2'
+const Popular_news_card = ({media, updated, title, source, id}) => {
+    let img = media[0]['media-metadata'][2].url
+    // if (media === false) {
+    //     console.log(media);
+    // }
+    // console.log(id, media); 
+    if (media === false || media[0]['media-metadata'] === false || media.length === 0) {
+        img = 'https://i.stack.imgur.com/y9DpT.jpg'
+      }
     return (
-    <NavLink to={`/news-detail/${author}`}>
+    <NavLink to={`/news-detail/${id}`}>
         <div className={styles.card}>
             <div className={styles.card__img}>
-                <img src={urlToImage} alt="" />
+                <img src={img} alt="" />
             </div>
             <div className={styles.card__description}>
-                <p>{timeDifferenceHours} Hours ago</p>
+                {/* <p>{timeDifferenceHours} Hours ago</p> */}
                 <h4>{title}</h4>
             </div>
         </div>

@@ -51,6 +51,11 @@ nav {
         display: grid;
         grid-template-columns: 3fr 1fr;
     }
+    @media (max-width: 533px) {
+        .container {
+        grid-template-columns: 1fr 1fr;
+        }
+    }
     border-bottom: 1px solid #FFFFFF;
 }
 
@@ -118,6 +123,12 @@ nav {
 @media (max-width: 840px) {
     .navbar-page-link:not(.navbar-logo) {
         display: none;
+    }
+}
+
+@media (max-width: 533px) {
+    .navbar-page-links {
+        display: block;
     }
 }
 

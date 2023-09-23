@@ -12,29 +12,40 @@ const SearchPage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const { keyword } = useKeyword();
-    const API_KEY = '43021f4e5ff342d1a21062038a9adbe5';
-    const PAGE_SIZE = 3;
-
+    const API_KEY = 'D7F4m4gqhnMZuhWQlLGGFfwUGllLzCin';
+    const DISPLAY_PER_PAGE = 4;
     useEffect(() => {
-        async function fetchNews() {
-          try {
-            const response = await fetch(
-              `https://newsapi.org/v2/top-headlines?country=us&apiKey=${API_KEY}&pageSize=${PAGE_SIZE}&page=${currentPage}&q=${keyword}`
-            );
-    
-            if (!response.ok) {
-              throw new Error('Network response was not ok');
-            }
-    
-            const data = await response.json();
-            setArticles(data.articles);
-            setTotalPages(Math.ceil(data.totalResults / PAGE_SIZE));
-          } catch (error) {
-            console.error('Error fetching data:', error);
+      async function fetchNews() {
+        try {
+          const response = await fetch(
+            `https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=${API_KEY}`
+          );
+  
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
           }
+  
+          const data = await response.json();
+          
+          const filteredArticles = data.results.filter(article =>
+            article.title.toLowerCase().includes(keyword.toLowerCase())
+            );
+          setTotalPages(data.num_results / DISPLAY_PER_PAGE)
+          const startIndex = (currentPage - 1) * DISPLAY_PER_PAGE;
+          const endIndex = startIndex + DISPLAY_PER_PAGE;
+          if (keyword.length > 0) {
+            setTotalPages(Math.ceil(filteredArticles.length / DISPLAY_PER_PAGE));
+            setArticles(filteredArticles.slice(startIndex, endIndex));
+            } else {
+            setArticles(data.results.slice(startIndex, endIndex))
+          }
+
+        } catch (error) {
+          console.error('Error fetching data:', error);
         }
-    
-        fetchNews();
+      }
+  
+      fetchNews();
     }, [currentPage, keyword]);
 
     const handlePageChange = (newPage) => {
@@ -52,8 +63,8 @@ const SearchPage = () => {
             <div className="container">
                 <h1 className={styles.news_title}>News</h1>
                 <div className={styles.news_list}>
-                    {articles.map((article, index) => (
-                    <AllNewsCard key={index} {...article} />
+                    {articles.map((article) => (
+                    <AllNewsCard key={article.id} {...article} />
                     ))}
                 </div>
             

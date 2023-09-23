@@ -8,42 +8,40 @@ import Loader from '../components/shared/Loader'
 import styles from './NewsDetailPage.module.scss'
 
 const NewsDetailPage = () => {
-  const url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=43021f4e5ff342d1a21062038a9adbe5'
+  const url = 'https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=D7F4m4gqhnMZuhWQlLGGFfwUGllLzCin'
   const req = new Request(url);
   const pageUrl = useParams();
   const [data, setData] = useState([])
   const [latestNewsObject, setLatestNews] = useState([])
   const [newsDetail, setNewsDetail] = useState(null);
   useEffect(() => {
-    fetch(req)
-        .then((response) => response.json())
-        .then((result) => {
-          if (result.articles && result.articles.length > 0) {
-            const latestNews = result.articles.slice(result.articles.length - 14, -6);
-            setData(result.articles)
-            setLatestNews(latestNews);
-          } else {
-            console.log("No articles found in the response.");
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        })
-        
-  }, []);
-
+    async function fetchNews() {
+      try {
+        const response = await fetch(req)
+        const result = await response.json()
+        const latestNews = result.results.slice(result.results.length - 14, -6);
+        setData(result.results)
+        setLatestNews(latestNews);
+      } catch(error){
+        console.log(error);
+      }
+    }
+    
+    fetchNews()
+  }, [pageUrl]);
   useEffect(() => {
-    const filteredNews = data.filter((el) => el.author === pageUrl.author);
+    const filteredNews = data.filter((el) => el.id == pageUrl.id);
     if (filteredNews.length > 0) {
       setNewsDetail(filteredNews[0]);
     }
-  }, [data, pageUrl.author]);
+  }, [data, pageUrl.id]);
 
   console.log(newsDetail);
   if (!newsDetail) {
     return <Loader />; 
   }
-  const {author, content, description, title, urlToImage} = newsDetail
+  const {media, updated, title, source, id, abstract, byline} = newsDetail
+  const img = media[0]['media-metadata'][2].url
   
   return (
     <Fragment>
@@ -52,10 +50,10 @@ const NewsDetailPage = () => {
         <div className="container">
           <div className={styles.about}>
             <h1>{title}</h1>
-            <h4>{content}</h4>
-            <img src={urlToImage} alt="" />
-            <p>{description}</p>
-            <p>{author}</p>
+            <h4>{abstract}</h4>
+            <img src={img} alt="" />
+            <p>{byline}</p>
+            <p>{source}</p>
           </div>
         </div>
       </section>

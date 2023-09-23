@@ -2,18 +2,18 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './LatestNews.module.scss'
 
-const LatestNews = ({urlToImage, publishedAt, author, title, source}) => {
+const LatestNews = ({media, updated, title, source, id}) => {
+  const img = media[0]['media-metadata'][2].url
   return (
-    <NavLink to={`/news-detail/${author}`}>
+    <NavLink to={`/news-detail/${id}`}>
         <div className={styles.card}>
             <div className={styles.card__img}>
-                <img src={urlToImage} alt="" />
-                <p>{source.name}</p>
+                <img src={img} alt="" />
+                <p>{source}</p>
             </div>
             
             <div className={styles.card__description}>
                 <h4>{title}</h4>
-                <p>{author}</p>
             </div>
         </div>
     </NavLink>

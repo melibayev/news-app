@@ -63,7 +63,7 @@ const Header = ({ onKeywordChange }) => {
         <div className={`navbar-search-dropdown ${dropdown ? 'dropdown-open' : ''}`}>
           <div className="container">
             <input type="text" placeholder='Search topic what you want to know' onChange={handleInputChange} />
-            <button className='dropdown-button' onClick={() => setDropdown(!dropdown)}><AiOutlineSearch /></button>
+            <NavLink to={'/all'}><button className='dropdown-button' onClick={() => setDropdown(!dropdown)}><AiOutlineSearch /></button></NavLink>
           </div>
         </div>
     </header>

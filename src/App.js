@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path='/'>
           <Route index element={<HomePage />}/>
-          <Route path='/news-detail/:author' element={<NewsDetailPage />} />
+          <Route path='/news-detail/:id' element={<NewsDetailPage />} />
           <Route path='/all' element={<SearchPage />} />
         </Route>
       </Routes>

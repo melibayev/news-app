@@ -20,24 +20,24 @@ const HomePage = () => {
   const [homeNewsObject, setHomeNews] = useState([])
   const [latestNewsObject, setLatestNews] = useState([])
   const [recommendedNewsObject, setRecommendedNews] = useState([])
-  const url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=43021f4e5ff342d1a21062038a9adbe5'
+  // const url = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=43021f4e5ff342d1a21062038a9adbe5'
+  const url = 'https://api.nytimes.com/svc/mostpopular/v2/viewed/1.json?api-key=D7F4m4gqhnMZuhWQlLGGFfwUGllLzCin'
   const req = new Request(url);
   
   const { updateApiDataArrived } = useApiData();
   const { apiDataArrived } = useApiData();
 
+
   useEffect(() => {
     fetch(req)
       .then((response) => response.json())
       .then((result) => {
-        if (result.articles && result.articles.length > 0) {
-          const popularNews = result.articles.slice(13, 18);
-          const homeNews = result.articles.slice(9, 11);
-          const latestNews = result.articles.slice(
-            result.articles.length - 14,
-            -6
-          );
-          const recommendedNews = result.articles.slice(16, 26);
+        if (result.results && result.results.length > 0) {
+          const popularNews = result.results.slice(-5);
+          const homeNews = result.results.slice(0, 2);
+          const latestNews = result.results.slice(-12);
+          const recommendedNews = result.results.slice(0, 10);
+          console.log(recommendedNews);
           setPopularNews(popularNews);
           setHomeNews(homeNews);
           setLatestNews(latestNews);
@@ -51,6 +51,16 @@ const HomePage = () => {
         console.log(error);
       });
   }, []);
+  // useEffect(() => {
+  //   fetch(req)
+  //     .then((response) => response.json())
+  //     .then((result) => {
+  //       console.log(result);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, []);
   
 
     const responsive = {
@@ -86,7 +96,7 @@ const HomePage = () => {
                     <h1>Charge Two Devices at the Same Time With This Magnetic Wireless Charging Dock</h1>
                     <div className={styles.home_news}>
                       {homeNewsObject.map((card) => (
-                        <HomeNewsCard key={card.source.id} {...card}/>
+                        <HomeNewsCard key={card.id} {...card}/>
                       ))}
                     </div>
                   </div>
@@ -94,7 +104,7 @@ const HomePage = () => {
                     <div className={styles.home_popularlist_table}>
                         <h3>Popular this week</h3>
                         {popularNewsObject.map((card) => (
-                        <PopularNewsCard key={card.source.id} {...card} />
+                        <PopularNewsCard key={card.id} {...card} />
                         ))}
                     </div>
                   </div>
@@ -110,7 +120,7 @@ const HomePage = () => {
                 </div>
                 <div className={styles.latest_post_cards}>
                     {latestNewsObject.map((card) => (
-                      <LatestNews {...card}/>
+                      <LatestNews key={card.id} {...card}/>
                     ))}
                 </div>
               </div>
@@ -122,7 +132,7 @@ const HomePage = () => {
                 <div className={`${styles.recommend_posts} carousel-container`}>
                   <Carousel infinite autoPlay autoPlaySpeed={3000} keyBoardControl pauseOnHover responsive={responsive}>
                     {recommendedNewsObject.map((card) => (
-                      <RecommendedNews {...card}/>
+                      <RecommendedNews key={card.id} {...card}/>
                       ))}
                   </Carousel>
                 </div>
