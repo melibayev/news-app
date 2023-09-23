@@ -29,6 +29,7 @@ const NewsDetailPage = () => {
     
     fetchNews()
   }, [pageUrl]);
+
   useEffect(() => {
     const filteredNews = data.filter((el) => el.id == pageUrl.id);
     if (filteredNews.length > 0) {
@@ -37,12 +38,16 @@ const NewsDetailPage = () => {
     window.scrollTo(0, 0);
   }, [data, pageUrl.id]);
 
-  console.log(newsDetail);
   if (!newsDetail) {
     return <Loader />; 
   }
-  const {media, updated, title, source, id, abstract, byline} = newsDetail
-  const img = media[0]['media-metadata'][2].url
+  const {media, title, source, abstract, byline} = newsDetail
+  let img
+  if (media === false || media.length === 0) {
+    img = 'https://i.stack.imgur.com/y9DpT.jpg'
+  } else {
+    img = media[0]['media-metadata'][2].url
+  }
   
   return (
     <Fragment>

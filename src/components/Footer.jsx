@@ -5,6 +5,9 @@ import Logo from '../assets/images/footer/logo.svg'
 import { NavLink } from 'react-router-dom'
 
 const Footer = () => {
+  const submit = (e) => {
+    e.preventDefault()
+  }
   return (
     <Fragment>
       <section id='contact'>
@@ -15,8 +18,10 @@ const Footer = () => {
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod.</p>
             </div>
             <div className="contact-input">
-              <input type="email" placeholder='Input your email address here'/>
-              <button type='submit'>Subscribe Now</button>
+              <form onSubmit={submit}>
+                <input type="email" placeholder='Input your email address here'/>
+                <button type='submit'>Subscribe Now</button>
+              </form>
             </div>
           </div>
         </div>
@@ -32,27 +37,27 @@ const Footer = () => {
             <div className="footer-links">
               <ul className="footer-category">
                 <li className='footer-category-item'>Categories</li>
-                <li className='footer-category-item'><NavLink>International</NavLink></li>
-                <li className='footer-category-item'><NavLink>Regional</NavLink></li>
-                <li className='footer-category-item'><NavLink>Politics</NavLink></li>
-                <li className='footer-category-item'><NavLink>Business</NavLink></li>
-                <li className='footer-category-item'><NavLink>Sports</NavLink></li>
-                <li className='footer-category-item'><NavLink>Health</NavLink></li>
+                <NavLink><li className='footer-category-item'>International</li></NavLink>
+                <NavLink><li className='footer-category-item'>Regional</li></NavLink>
+                <NavLink><li className='footer-category-item'>Politics</li></NavLink>
+                <NavLink><li className='footer-category-item'>Business</li></NavLink>
+                <NavLink><li className='footer-category-item'>Sports</li></NavLink>
+                <NavLink><li className='footer-category-item'>Health</li></NavLink>
               </ul>
               <ul className="footer-company">
                 <li className='footer-company-item'>Company</li>
-                <li className='footer-company-item'><NavLink>About Us</NavLink></li>
-                <li className='footer-company-item'><NavLink>Careers</NavLink></li>
-                <li className='footer-company-item'><NavLink>Privacy Policy</NavLink></li>
-                <li className='footer-company-item'><NavLink>Terms Of Services</NavLink></li>
-                <li className='footer-company-item'><NavLink>Contact Us</NavLink></li>
+                <NavLink><li className='footer-company-item'>About Us</li></NavLink>
+                <NavLink><li className='footer-company-item'>Careers</li></NavLink>
+                <NavLink><li className='footer-company-item'>Privacy Policy</li></NavLink>
+                <NavLink><li className='footer-company-item'>Terms Of Services</li></NavLink>
+                <NavLink><li className='footer-company-item'>Contact Us</li></NavLink>
               </ul>
               <ul className="footer-social-media">
                 <li className='footer-social-media-item'>Social Media</li>
-                <li className='footer-social-media-item'><NavLink>Youtube</NavLink></li>
-                <li className='footer-social-media-item'><NavLink>Instagram</NavLink></li>
-                <li className='footer-social-media-item'><NavLink>Facebook</NavLink></li>
-                <li className='footer-social-media-item'><NavLink>Twitter</NavLink></li>
+                <NavLink><li className='footer-social-media-item'>Youtube</li></NavLink>
+                <NavLink><li className='footer-social-media-item'>Instagram</li></NavLink>
+                <NavLink><li className='footer-social-media-item'>Facebook</li></NavLink>
+                <NavLink><li className='footer-social-media-item'>Twitter</li></NavLink>
               </ul>
             </div>
           </div>

@@ -2,14 +2,19 @@ import React, { useState } from 'react'
 import './Header.scss';
 import Logo from '../assets/images/header/logo.svg'
 import { AiOutlineSearch } from 'react-icons/ai' 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { useKeyword } from './context/KeywordContext';
 
 const Header = ({ onKeywordChange }) => {
   const [dropdown, setDropdown] = useState(false);
-  const [inputValue, setInputValue] = useState('');
+  const navigate = useNavigate();
 
   const { keyword, updateKeyword } = useKeyword();
+
+  const submit = (e) => {
+    e.preventDefault();
+    navigate('/all')
+  }
 
   const handleInputChange = (event) => {
     const newKeyword = event.target.value;
@@ -62,8 +67,10 @@ const Header = ({ onKeywordChange }) => {
         </nav>
         <div className={`navbar-search-dropdown ${dropdown ? 'dropdown-open' : ''}`}>
           <div className="container">
-            <input type="text" placeholder='Search topic what you want to know' onChange={handleInputChange} />
-            <NavLink to={'/all'}><button className='dropdown-button' onClick={() => setDropdown(!dropdown)}><AiOutlineSearch /></button></NavLink>
+            <form onSubmit={submit}>
+              <input type="text" placeholder='Search topic what you want to know' onChange={handleInputChange} />
+              <button type='submit' className='dropdown-button' onClick={() => setDropdown(!dropdown)}><AiOutlineSearch /></button>
+            </form>
           </div>
         </div>
     </header>
